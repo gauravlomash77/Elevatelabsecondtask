@@ -26,7 +26,7 @@ pipeline {
                 script {
                     if (fileExists('test/test.js')) {
                         echo 'Installing Node.js dependencies...'
-                        sh 'npm install'
+                        sh 'npm ci'
                         echo 'Running Node.js tests...'
                         sh 'npm test'  
                     } else {
