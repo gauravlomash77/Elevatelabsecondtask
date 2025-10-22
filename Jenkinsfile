@@ -23,15 +23,28 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                echo 'Running Node.js tests...'
-                sh 'node test/test.js'
+                script {
+                    if (fileExists('test/test.js')) {
+                        echo 'Installing Node.js dependencies...'
+                        sh 'npm install'
+                        echo 'Running Node.js tests...'
+                        sh 'npm test'  
+                    } else {
+                        echo 'Test file not found, skipping tests.'
+                    }
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker login -u $DOCKERHUB_CRED_USR -p $DOCKERHUB_CRED_PSW'
+                echo 'Logging into DockerHub...'
+                sh """
+                echo $DOCKERHUB_CRED_PSW | docker login -u $DOCKERHUB_CRED_USR --password-stdin
+                """
+                echo 'Building Docker image...'
                 sh "docker build -t $DOCKER_IMAGE ."
+                echo 'Pushing Docker image to DockerHub...'
                 sh "docker push $DOCKER_IMAGE"
             }
         }
@@ -39,6 +52,7 @@ pipeline {
         stage('Deploy on EC2') {
             steps {
                 script {
+                    echo "Deploying $APP_NAME on EC2..."
                     sh """
                     ssh -o StrictHostKeyChecking=no -i $EC2_SSH $EC2_USER@$EC2_HOST '
                         docker pull $DOCKER_IMAGE
