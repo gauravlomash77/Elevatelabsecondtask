@@ -25,9 +25,9 @@ This repository demonstrates a complete CI/CD pipeline for my Node.js portfolio 
 
 ## Secrets Required
 
-- `GITHUB` → GitHub credentials (used for repo checkout)  
-- `DOCKERHUB` → DockerHub credentials (used for Docker login and push)  
-- `EC2` → EC2 credentials (SSH private key and username for deployment)  
+- GITHUB → GitHub credentials (used for repo checkout)  
+- DOCKERHUB → DockerHub credentials (used for Docker login and push)  
+- EC2 → EC2 credentials (SSH private key and username for deployment)  
 
 ---
 
