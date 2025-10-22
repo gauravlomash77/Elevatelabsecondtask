@@ -16,8 +16,8 @@ This repository demonstrates a complete CI/CD pipeline for my Node.js portfolio 
 ## Workflow Summary
 
 1. **Code Checkout:** Pulls the latest code from the main branch  
-2. **Install Dependencies:** Installs exact Node.js dependencies using `npm ci`  
-3. **Run Tests:** Executes `npm test` to validate the application  
+2. **Install Dependencies:** Installs exact Node.js dependencies using npm ci  
+3. **Run Tests:** Executes npm test to validate the application  
 4. **Docker Build & Push:** Builds the Docker image and pushes it to DockerHub  
 5. **EC2 Deployment:** SSH into EC2, pull the latest image, stop/remove any running container, and run the new container  
 
