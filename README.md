@@ -43,3 +43,5 @@ This repository demonstrates a complete CI/CD pipeline for my Node.js portfolio 
 
 Once deployed, the portfolio can be accessed at:  
 http://3.110.188.30/
+
+ **Note:** Due to free tier access limitations, the EC2 instance has been shut down to avoid unnecessary charges.
