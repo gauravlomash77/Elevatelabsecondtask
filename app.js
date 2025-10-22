@@ -18,9 +18,10 @@ app.get("/health", (req, res) => {
 });
 
 if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`✅ Portfolio running at http://localhost:${PORT}`);
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`✅ Portfolio running at http://0.0.0.0:${PORT}`);
   });
 }
+
 
 module.exports = app;
